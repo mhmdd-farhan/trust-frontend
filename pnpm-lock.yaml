@@ -84,8 +84,8 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1
       pnpm:
-        specifier: ^10.4.1
-        version: 10.4.1
+        specifier: ^10.9.0
+        version: 10.9.0
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -2114,8 +2114,8 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
 
-  pnpm@10.4.1:
-    resolution: {integrity: sha512-x1O2w616+hOvOI+m2AgDWgCOMOqZk/WMZmPivF/yFnmqg02wlJhxKapNSIuG31f3tjSYGy+CfNysxpjMDPuIrw==}
+  pnpm@10.9.0:
+    resolution: {integrity: sha512-BIbjlGQNPB+zydQ9Sc+Sh5/3T4UWlZwjUwj1qPYuLhlSimXNwqMFj1h83nHro9W1YyfIwzqX5MQFHKSKEMotXw==}
     engines: {node: '>=18.12'}
     hasBin: true
 
@@ -4748,7 +4748,7 @@ snapshots:
 
   pirates@4.0.6: {}
 
-  pnpm@10.4.1: {}
+  pnpm@10.9.0: {}
 
   possible-typed-array-names@1.0.0: {}
 

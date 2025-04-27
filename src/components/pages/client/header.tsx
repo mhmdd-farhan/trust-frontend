@@ -56,8 +56,8 @@ export const Header = () => {
   };
 
   const handleNavLinkClick = () => {
-    if (window.innerWidth < 640) { // 640px adalah breakpoint sm di Tailwind
-      setIsOpenNav(false); // Tutup isOpenNav hanya pada layar kecil
+    if (window.innerWidth < 640) { 
+      setIsOpenNav(false);
     }
   };
 
@@ -125,23 +125,23 @@ export const Header = () => {
         id="logo"
       >
         {
-          isAuth ? (
+          isAuth || userName ? (
             <>
               <Link href={"/wishList"} onClick={handleNavLinkClick}>
               <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="size-6 text-primary"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-          />
-        </svg>
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6 text-primary"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                />
+              </svg>
               </Link>
         <Link href={"/cart"} onClick={handleNavLinkClick}>
         <svg
@@ -198,8 +198,8 @@ const NavLinks = ({ isOpenNav, handleNavLinkClick }: {isOpenNav: boolean, handle
   return (
     <div className={clsx("flex flex-col sm:flex-row gap-2 justify-between px-4 font-sans font-medium",
       {
-        'hidden': !isOpenNav, // Sembunyikan navigasi pada layar kecil jika isOpenNav false
-        'flex': isOpenNav, // Tampilkan navigasi pada layar kecil jika isOpenNav true
+        'hidden': !isOpenNav,
+        'flex': isOpenNav,
       }
     )}   
     >

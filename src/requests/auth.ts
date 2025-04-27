@@ -8,7 +8,6 @@ export const authFetch = async (userData: z.infer<typeof authSchema>, page: stri
     const url = `${process.env.NEXT_PUBLIC_API_URL}/auth/${page}`;
     console.log(userData)
 
-    try {
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -18,7 +17,7 @@ export const authFetch = async (userData: z.infer<typeof authSchema>, page: stri
       });
 
       if(!response.ok) {
-        return null
+        throw new Error(`${page} Failed`);
       }
       
       const userAuthData: z.infer<typeof loginResponseSchema> = await response.json();
@@ -32,11 +31,6 @@ export const authFetch = async (userData: z.infer<typeof authSchema>, page: stri
       }
 
       return userAuthData;
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: Error | any) {
-      throw new Error(`${error.message}`)
-    }
 }
 
 export const refreshAccesToken = async (refreshToken: string) => {

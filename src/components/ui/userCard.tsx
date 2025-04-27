@@ -19,18 +19,20 @@ type ModalProps = {
   
 
 export const UserCart: React.FC<ModalProps> = ({ isOpen, ref, handleNavLinkClick }) => {
+    const { setUserId } = useAuthContext();
+    const { setUserName } = useAuthContext();
     const router = useRouter();
     const accesToken = Cookies.get("accessToken");
     const refrehToken = Cookies.get("refreshToken");
     const { userId } = useAuthContext();
-    const [userRole, setUserRole] = useState("")
+    const [userRole, setUserRole] = useState("");
 
     useEffect(() => {
       async function fetchUserProfile() {
         const userProfile = await getUserProfile(accesToken);
 
         if (userProfile) {
-          setUserRole(userProfile.user.roles[0].role.roleName)
+          setUserRole(userProfile.user.roles[0].role.roleName);
         }
       }
 
@@ -38,14 +40,20 @@ export const UserCart: React.FC<ModalProps> = ({ isOpen, ref, handleNavLinkClick
     })
 
     async function handleLogout() {
-        await logOut(accesToken, refrehToken);
+        try {
+          await logOut(accesToken, refrehToken);
+          setUserId(null);
+          setUserName(null);
 
-        toast('Logout success', {
-            description: new Date().toISOString().split('T')[0],
-            action: { label: 'Close', onClick: () => '' },
-        });
+          toast('Logout success', {
+              description: new Date().toISOString().split('T')[0],
+              action: { label: 'Close', onClick: () => '' },
+          });
 
-        router.push("/login")
+          router.push("/login")
+        } catch (error: Error | any) {
+          console.error(`${error.message}`);
+        }
     }
 
   return (

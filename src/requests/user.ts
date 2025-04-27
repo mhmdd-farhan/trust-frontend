@@ -7,27 +7,22 @@ export const getUserProfile = async (token: string | undefined) => {
 
     const url = `${baseUrl}/auth/me`;
 
-    try {
-        const response = await fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-        });
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+    });
       
-        if(!response.ok) {
-            throw new Error(`${response.statusText}`)
-        }
-          
-        const userInfo: z.infer<typeof userProfile> = await response.json();
-        console.log(userProfile);
-      
-        return userInfo;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: Error | any) {
-      throw new Error(`Error ${error.message}`)
+    if(!response.ok) {
+        throw new Error(`${response.status}`)
     }
+          
+    const userInfo: z.infer<typeof userProfile> = await response.json();
+    console.log(userProfile);
+      
+    return userInfo;
 }
 
 export const switchRole = async (registrationData: z.infer<typeof sellerRegistrationschema>, token: string | undefined) => {

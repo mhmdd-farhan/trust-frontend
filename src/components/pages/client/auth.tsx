@@ -27,6 +27,7 @@ interface AuthPageProps {
 export const AuthPage: React.FC<AuthPageProps> = ({ page }) => {
   const router = useRouter();
   const { setUserName } = useAuthContext();
+  const { setUserId } = useAuthContext();
   const isRegister = page === 'register';
 
   const form = useForm<z.infer<typeof authSchema>>({
@@ -66,6 +67,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({ page }) => {
         });
       } else {
         setUserName(isSuccess.userName);
+        setUserId(isSuccess.userId);
         toast('Login success', {
           description: new Date().toISOString().split('T')[0],
           action: { label: 'Close', onClick: () => '' },
